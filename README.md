@@ -30,3 +30,7 @@ Your task is to read data from 2 files, order racers by time and print report th
 
 
 Use Java 8 API where appropriate.
+
+docs/abbreviations.txt
+docs/end.log
+docs/start.log
