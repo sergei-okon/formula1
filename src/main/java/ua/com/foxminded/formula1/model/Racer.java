@@ -1,13 +1,26 @@
 package ua.com.foxminded.formula1.model;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 public class Racer {
     String abbreviations;
     String name;
     String team;
-    String start;
-    String end;
+    LocalDateTime start;
+    LocalDateTime end;
+    Duration duration;
 
     public Racer() {
+    }
+
+    public Racer(String abbreviations, String name, String team, LocalDateTime start, LocalDateTime end, Duration duration) {
+        this.abbreviations = abbreviations;
+        this.name = name;
+        this.team = team;
+        this.start = start;
+        this.end = end;
+        this.duration = duration;
     }
 
     public String getAbbreviations() {
@@ -34,20 +47,28 @@ public class Racer {
         this.team = team;
     }
 
-    public String getStart() {
+    public LocalDateTime getStart() {
         return start;
     }
 
-    public void setStart(String start) {
+    public void setStart(LocalDateTime start) {
         this.start = start;
     }
 
-    public String getEnd() {
+    public LocalDateTime getEnd() {
         return end;
     }
 
-    public void setEnd(String end) {
+    public void setEnd(LocalDateTime end) {
         this.end = end;
+    }
+
+    public Duration getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Duration duration) {
+        this.duration = duration;
     }
 
     @Override
@@ -58,6 +79,9 @@ public class Racer {
                 ", team='" + team + '\'' +
                 ", start=" + start +
                 ", end=" + end +
+                ", duration=" + duration +
                 '}';
     }
 }
+
+
