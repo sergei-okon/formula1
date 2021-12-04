@@ -28,7 +28,7 @@ class FormatterTest {
     }
 
     @Test
-    void format_shouldSuccess_whenArgsIsCorrect() throws IOException {
+    void format_ShouldSuccess_whenArgsIsCorrect() throws IOException {
         List<String> abbreviationsRacers = Files.lines(Paths.get("docs/abbreviations.txt")).collect(Collectors.toList());
         List<String> startList = Files.lines(Paths.get("docs/start.log")).collect(Collectors.toList());
         List<String> endList = Files.lines(Paths.get("docs/end.log")).collect(Collectors.toList());

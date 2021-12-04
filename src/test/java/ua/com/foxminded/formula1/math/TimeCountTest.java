@@ -24,7 +24,7 @@ class TimeCountTest {
     }
 
     @Test
-    void createRacer_shouldMadeObjectRacer_whenArgsIsCorrect() {
+    void createRacer_ShouldMadeObjectRacer_whenArgsIsCorrect() {
         List<String> abbreviationsRacers = new ArrayList<>(Collections.singleton("DRR_Daniel Ricciardo_RED BULL RACING TAG HEUER"));
         List<String> startList = new ArrayList<>(Collections.singleton("DRR2018-05-24_12:14:12.054"));
         List<String> endLis = new ArrayList<>(Collections.singleton("DRR2018-05-24_12:15:24.067"));
