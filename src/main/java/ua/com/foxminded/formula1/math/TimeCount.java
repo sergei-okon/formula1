@@ -17,40 +17,35 @@ public class TimeCount {
         Map<String, LocalDateTime> startSplitLogMapSplitLogFiles = splitLogFiles(startList);
         Map<String, LocalDateTime> endSplitLogMapSplitLogFiles = splitLogFiles(endList);
 
-        LocalDateTime strTempStart;
-        LocalDateTime strTempEnd;
-        String abbTemp;
+        racers.forEach(racer -> {
+            String abbTemp = racer.getAbbreviations();
 
-        for (Racer racer : racers) {
-            abbTemp = racer.getAbbreviations();
-
-            strTempStart = startSplitLogMapSplitLogFiles.getOrDefault(abbTemp, null);
+            LocalDateTime strTempStart = startSplitLogMapSplitLogFiles.getOrDefault(abbTemp, null);
             racer.setStart(strTempStart);
 
-            strTempEnd = endSplitLogMapSplitLogFiles.getOrDefault(abbTemp, null);
+            LocalDateTime strTempEnd = endSplitLogMapSplitLogFiles.getOrDefault(abbTemp, null);
             racer.setEnd(strTempEnd);
 
             Duration duration = Duration.between(strTempStart, strTempEnd);
             racer.setDuration(duration);
-        }
+        });
+
         return racers;
     }
 
     private List<Racer> splitAbbreviations(List<String> abbreviationsRacers) {
         List<Racer> racersAbbList = new ArrayList<>();
 
-        String[] strTemp;
+        abbreviationsRacers.stream()
+                .map(abbreviation -> abbreviation.split("_"))
+                .forEach(strTemp -> {
+                    Racer racer = new Racer();
+                    racer.setAbbreviations(strTemp[0]);
+                    racer.setName(strTemp[1]);
+                    racer.setTeam(strTemp[2]);
+                    racersAbbList.add(racer);
+                });
 
-        for (String abbreviation : abbreviationsRacers) {
-            strTemp = abbreviation.split("_");
-
-            Racer racer = new Racer();
-            racer.setAbbreviations(strTemp[0]);
-            racer.setName(strTemp[1]);
-            racer.setTeam(strTemp[2]);
-
-            racersAbbList.add(racer);
-        }
         return racersAbbList;
     }
 
@@ -58,15 +53,12 @@ public class TimeCount {
         Map<String, LocalDateTime> splitLogMap = new HashMap<>();
         DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH:mm:ss.SSS");
 
-        String indexZero;
-        LocalDateTime indexOne;
-
-        for (String log : logs) {
-            indexZero = log.substring(0, 3);
-            indexOne = LocalDateTime.parse(log.substring(3), formatterDate);
-
+        logs.forEach(log -> {
+            String indexZero = log.substring(0, 3);
+            LocalDateTime indexOne = LocalDateTime.parse(log.substring(3), formatterDate);
             splitLogMap.put(indexZero, indexOne);
-        }
+        });
+
         return splitLogMap;
     }
 }

@@ -11,7 +11,9 @@ public class Formatter {
 
     public String format(List<Racer> racers) {
 
-        racers = racers.stream().sorted(Comparator.comparing(Racer::getDuration)).collect(Collectors.toList());
+        racers = racers.stream()
+                .sorted(Comparator.comparing(Racer::getDuration))
+                .collect(Collectors.toList());
 
         StringBuilder output = new StringBuilder();
         int number = 1;
@@ -32,13 +34,15 @@ public class Formatter {
                 outputTemp = (number + " | " + racers.get(i).getName() + (" ").repeat(25 - racers.get(i).getName().length()) +
                         " | " + racers.get(i).getTeam() + (" ").repeat(26 - racers.get(i).getTeam().length()) + "| " +
                         strDataTemp + "\n");
-            } else
+            } else {
                 outputTemp = (number + "  | " + racers.get(i).getName() + (" ").repeat(25 - racers.get(i).getName().length()) +
                         " | " + racers.get(i).getTeam() + (" ").repeat(26 - racers.get(i).getTeam().length()) + "| " +
                         strDataTemp + "\n");
+            }
             output.append(outputTemp);
             number++;
         }
+
         return output.toString();
     }
 }
